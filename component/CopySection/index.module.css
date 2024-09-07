@@ -1,0 +1,17 @@
+.copyContainer {
+    @apply flex flex-col absolute text-slate-300 border border-gray-400 rounded p-2 bg-slate-400 bg-opacity-25 font-semibold text-xl;
+    left: 30px;
+    bottom: 100px;
+  
+    hr {
+      @apply my-1;
+    }
+    .copyHeading {
+      @apply text-2xl text-gray-300;
+    }
+  
+    .copyDescription {
+      @apply flex items-center text-xl;
+    }
+  }
+  

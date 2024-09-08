@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "concurrently \"next start\" \"peerjs --port 9000\"",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {

@@ -8,8 +8,8 @@
 .inActivePlayerContainer {
   @apply absolute flex flex-col justify-center items-center overflow-y-auto; /* Center items */
   width: 100%; /* 50% width */
-  height: calc(100vh - 20px); /* Full height minus the top margin */
+  height: calc(100vh - 10vh); /* Full height minus the top margin */
   left: 50%; /* Start from the left-middle point */
   transform: translateX(-50%); /* Center the container by translating it left by 50% of its own width */
-  top: 50px; /* Optional: adjust top spacing as needed */
+  top: 15vh; /* Optional: adjust top spacing as needed */
 }

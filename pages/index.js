@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion"
+
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -45,6 +47,7 @@ export default function Home() {
 
   return (
     <div>
+      
       <Image
         src={imageSrc}
         width={300} height={100} alt=""
@@ -53,10 +56,17 @@ export default function Home() {
       <div className="absolute top-[10%]">
       <span className="max-w-screen h-fit flex justify-center items-center">
             <Image src="/Logo.png" alt="BuddyTalks Logo" width={300} height={100} className={isSmallOrMedium? "hidden":"w-[15%] absolute left-[5%]"}/>
-            <h1 className={`${isSmallOrMedium? "text-[5vw]":"text-6xl"} text-gray-300 font-serif font-bold underline`}>BuddyTalks</h1>
+            <h1 className={`${isSmallOrMedium ? "text-[7vw]" : "text-7xl"} text-[#FD9B63] font-bold `} style={{ fontFamily: 'Birthstone Bounce' }}>BuddyTalks</h1>
       </span>
         
-        <div className={`font-serif ${isSmallOrMedium? "text-[3vw]":"text-[2vw]"} text-gray-200 text-[1.5vw] mx-[10%] my-[5%] justify-center items-center relative top-[5%]`}>
+        <motion.div
+          initial={{ y: "80%" ,opacity: 0}}
+          animate={{ y: 0 ,opacity: 1}}
+          exit={{ y: "-80%" ,opacity: 0}}
+          transition={{duration: 2,delay: 0.4 }}
+
+        
+        className={`font-serif ${isSmallOrMedium? "text-[3vw]":"text-[2vw]"} text-gray-200 text-[1.5vw] mx-[10%] my-[5%] justify-center items-center relative top-[5%]`}>
           Welcome to BuddyTalks – your go-to video chat platform designed for
           seamless communication and connection with friends, family, and
           colleagues. Whether you’re catching up with loved ones, collaborating
@@ -66,7 +76,7 @@ export default function Home() {
           sharing, all from the comfort of your browser. Join BuddyTalks today
           and start making meaningful connections – face-to-face, no matter the
           distance!
-        </div>
+        </motion.div>
         <div className="w-[80%] py-[5%] bg-gray-500 bg-opacity-40 mx-auto   rounded text-white flex flex-col items-center">
           <div className="flex flex-col items-center mt-3 w-full">
             <input

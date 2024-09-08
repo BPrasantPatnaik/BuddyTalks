@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 import Image from "next/image";
-import Logo from "../public/logo.png";
 
 export default function Home() {
   const router = useRouter();
@@ -31,7 +30,7 @@ export default function Home() {
       />
       <div className="absolute top-[10%]">
       <span className="max-w-screen h-fit flex justify-center items-center">
-            <Image src={Logo} alt="BuddyTalks Logo" width={300} height={100} className="w-[15%] absolute left-[5%]"/>
+            <Image src="/logo.png" alt="BuddyTalks Logo" width={300} height={100} className="w-[15%] absolute left-[5%]"/>
             <h1 className="text-6xl text-gray-300 font-serif font-bold underline">BuddyTalks</h1>
       </span>
         

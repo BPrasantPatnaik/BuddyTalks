@@ -1,7 +1,7 @@
 .activePlayerContainer {
-  @apply absolute w-[20%]; /* 20% width */
+  @apply absolute w-[20%] z-10; /* 20% width */
   right: 5%;
-  top: -20%;
+  top: -25vh;
   height: calc(100vh - 20px - 100px); /* Height as per your requirement */
 }
 
@@ -11,5 +11,5 @@
   height: calc(100vh - 10vh); /* Full height minus the top margin */
   left: 50%; /* Start from the left-middle point */
   transform: translateX(-50%); /* Center the container by translating it left by 50% of its own width */
-  top: 15vh; /* Optional: adjust top spacing as needed */
+  top: 12vh; /* Optional: adjust top spacing as needed */
 }

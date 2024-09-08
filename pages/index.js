@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
@@ -21,20 +21,42 @@ export default function Home() {
     }
   };
 
+
+  //this only for changing background image
+  const [isSmallOrMedium, setIsSmallOrMedium] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallOrMedium(window.innerWidth < 1000); // Assuming 768px is the breakpoint for medium
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check on mount
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const imageSrc = isSmallOrMedium 
+    ? 'https://images.pexels.com/photos/1624438/pexels-photo-1624438.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    : 'https://images.pexels.com/photos/1128334/pexels-photo-1128334.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+
+
   return (
     <div>
       <Image
-        src={`https://images.pexels.com/photos/1000445/pexels-photo-1000445.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`}
+        src={imageSrc}
         width={300} height={100} alt=""
-        className="w-screen h-full blur-sm"
+        className={`w-screen ${isSmallOrMedium? "h-fit":"h-full"} blur-sm`}
       />
       <div className="absolute top-[10%]">
       <span className="max-w-screen h-fit flex justify-center items-center">
-            <Image src="/Logo.png" alt="BuddyTalks Logo" width={300} height={100} className="w-[15%] absolute left-[5%]"/>
-            <h1 className="text-6xl text-gray-300 font-serif font-bold underline">BuddyTalks</h1>
+            <Image src="/Logo.png" alt="BuddyTalks Logo" width={300} height={100} className={isSmallOrMedium? "hidden":"w-[15%] absolute left-[5%]"}/>
+            <h1 className={`${isSmallOrMedium? "text-[5vw]":"text-6xl"} text-gray-300 font-serif font-bold underline`}>BuddyTalks</h1>
       </span>
         
-        <div className="font-serif text-gray-200 text-4xl mx-[10%] my-[5%] flex justify-center items-center relative top-[5%]">
+        <div className={`font-serif ${isSmallOrMedium? "text-[3vw]":"text-[2vw]"} text-gray-200 text-[1.5vw] mx-[10%] my-[5%] justify-center items-center relative top-[5%]`}>
           Welcome to BuddyTalks – your go-to video chat platform designed for
           seamless communication and connection with friends, family, and
           colleagues. Whether you’re catching up with loved ones, collaborating
@@ -51,21 +73,21 @@ export default function Home() {
               placeholder="Enter Room ID"
               value={roomId}
               onChange={(e) => setRoomId(e?.target?.value)}
-              className="text-black text-xl p-1 rounded w-9/12 mb-3"
+              className={`text-black ${isSmallOrMedium? "text-[3vw]":"text-[2vw]"} p-1 rounded w-9/12 mb-3`}
             />
             <button
               onClick={joinRoom}
-              className="bg-buttonPrimary text-2xl py-2 px-4 rounded hover:bg-red-700"
+              className={`bg-buttonPrimary ${isSmallOrMedium? "text-[3vw]":"text-[2vw]"} py-2 px-4 rounded hover:bg-red-700`}
             >
               Join Room
             </button>
           </div>
-          <span className="my-3 text-xl">
+          <span className={`my-3 ${isSmallOrMedium? "text-[3vw]":"text-xl"}`}>
             --------------- OR ---------------
           </span>
           <button
             onClick={createAndJoin}
-            className="bg-buttonPrimary text-2xl py-2 px-4 rounded hover:bg-red-700 "
+            className={`bg-buttonPrimary ${isSmallOrMedium? "text-[3vw]":"text-[2vw]"} py-2 px-4 rounded hover:bg-red-700`}
           >
             Create a new room
           </button>

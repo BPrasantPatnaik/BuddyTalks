@@ -146,12 +146,40 @@ const Room = () => {
     }));
   }, [myId, setPlayers, stream]);
 
+
+
+
+
+
+  //this only for changing background image
+  const [isSmallOrMedium, setIsSmallOrMedium] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallOrMedium(window.innerWidth < 1000); // Assuming 768px is the breakpoint for medium
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check on mount
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const imageSrc = isSmallOrMedium 
+    ? 'https://images.pexels.com/photos/26937329/pexels-photo-26937329/free-photo-of-night-sky-with-milky-way-over-a-rural-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    : 'https://images.pexels.com/photos/27665869/pexels-photo-27665869/free-photo-of-the-sun-sets-over-a-city-and-a-mountain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+
+
+  
+
   return (
     <>
     <div>
       <div className="">
-      <Image src={`https://images.pexels.com/photos/27665869/pexels-photo-27665869/free-photo-of-the-sun-sets-over-a-city-and-a-mountain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`} alt="" width={300} height={100}
-      className="w-screen max-h-screen blur-md" />
+      <Image src={imageSrc} alt="" width={300} height={100}
+      className={`w-screen h-screen blur-md`} />
       </div>
       
       
